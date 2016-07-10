@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+
 use App\Post;
 
-use Illuminate\Foundation\Bus\DispatchesJobs;
-use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-class PagesController extends Controller{
-	
+class PagesController extends Controller
+{
+    
+
 	public function getIndex(){
 		$posts=Post::orderBy('created_at', 'desc')->limit(4)->get();
 		return view('pages.welcome')->withPosts($posts);
@@ -32,7 +34,8 @@ class PagesController extends Controller{
 	public function getContact(){
 		return view('pages.contact');
 	}
+
+
+
+
 }
-
-
-
