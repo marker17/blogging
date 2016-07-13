@@ -12,9 +12,8 @@
         "doctrine/dbal": "^2.5",
         "yajra/laravel-datatables-oracle": "^6.15",
         "ext-mbstring": "*",
-        "ext-mysql": "*",
-        "laracasts/flash": "^2.0"
-
+        "ext-mysql": "*"
+       
        
 
     },
