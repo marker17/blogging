@@ -10,7 +10,11 @@
         "laravelcollective/html": "^5.2",
         "laracasts/flash": "^2.0",
         "doctrine/dbal": "^2.5",
-        "yajra/laravel-datatables-oracle": "^6.15"
+        "yajra/laravel-datatables-oracle": "^6.15",
+        "ext-mbstring": "*",
+        "ext-mysql": "*",
+        "laracasts/flash": "^2.0"
+
        
 
     },
