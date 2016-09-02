@@ -61,6 +61,7 @@ Route::resource('posts', 'PostController');
 //tags
 Route::resource('tags', 'TagController', ['except' => ['create']]);
 
-
+//categories
+Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 

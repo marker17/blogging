@@ -10,6 +10,8 @@ use App\Post;
 
 use Session;
 
+use App\Category;
+
 
 
 class PostController extends Controller
@@ -44,8 +46,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('posts.create');
+    { //neeed to grab all the categories and pass to a variable
+        $categories=Category::all();
+
+        return view('posts.create')->withCategories($categories);
     }
 
     /**
@@ -59,16 +63,13 @@ class PostController extends Controller
         $this->validate($request, array(
             'title' => 'required|max:255',
             'slug'=> 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id' => 'required|integer',
             'body'=>'required'
         ));
+    
         
-        $post = new Post;
-    
-        $post->title = $request->title;
-        $post->slug = $request->slug;
-        $post->body = $request->body;
-    
-        $post->save();
+        $post=Post::create($request->all());  
+        
     
         
         Session::flash('success', 'The blog post was successfully saved!');
@@ -96,13 +97,19 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id){
+
         $post = Post::find($id);
 
-        return view('posts.edit')->withPost($post);
-    }
+        $categories = Category::all();
+        $cats=array();
+        foreach($categories as $category){
 
+            $cats[$category->id] = $category->name;
+        }
+
+        return view('posts.edit')->withPost($post)->withCategories($categories);
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -119,27 +126,28 @@ class PostController extends Controller
         if($request->input('slug') == $post->slug){
             $this->validate($request, array(
                 'title' => 'required|max:255',
+                'category_id'=> 'required|integer',
                 'body' => 'required'
             ));
-        } else {
+        } 
+        else{
 
 
 
             $this->validate($request, array(
-            'title' => 'required|max:255',
-            'slug'=> 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'body'=>'required'
+                'title' => 'required|max:255',
+                'slug'=> 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'category_id'=> 'required|integer',
+                'body'=>'required'
             ));
 
         }   
 
-        $post->title = $request->input('title');
-        $post->slug = $request->input('slug');
-        $post->body = $request->input('body');
+        $post = Post::find($id);
         
-        $post->save();
-
-
+        $post->update($request->all());
+        
+      
         Session::flash('success', 'This post was successfully edited.');
 
         return redirect()->route('posts.show', $post->id);

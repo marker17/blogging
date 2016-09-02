@@ -21,10 +21,24 @@
 				</div>
 
 				<div class="form-group">
-					{{ php Form::label('slug', 'Slug:') }}
+					{{ Form::label('slug', 'Slug:') }}
 					{{ Form::text('slug', null, array('class' => 'form-control', 'required' => '', 'minlength' => '5', 'maxlength' => '255')) }}
 				</div>
 
+
+				<div class="form-group">
+					{{ Form::label('category', 'Category:') }}
+					<select class="form-control" name="category_id">
+						@foreach($categories as $category)
+							<option value='{{$category->id}}'>{{$category->name}}</option>
+						@endforeach
+					</select>
+				</div>
+
+	
+
+				
+		
 				<div class="form-group">
 					{!! Form::label('body', 'Body:')  !!}
 					{!! Form::textarea('body', null, ['class' => 'form-control', 'required' => ''])  !!}

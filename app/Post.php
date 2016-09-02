@@ -6,10 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model{
 
-	public function tags(){
 	
-		return $this->belongsToMany('App\Post', 'post_tag');
+       
+
+
+
+	public function category(){
+
+	 //a post belongs to a category
+
+		return $this->belongsTo('App\Category');
+
 	}
+
+	public function tags(){
+
+		return $this->belongsToMany('App\Tag');
+	}
+
+
+
 }
 
 
