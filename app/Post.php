@@ -7,9 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model{
 
 	
-       
+    protected $fillable = [
+        'title', 'body', 'slug', 'category_id',
+    ];
 
-
+    /*
+    protected $casts = [
+        'tags' => 'array',
+    ];
+    */
 
 	public function category(){
 

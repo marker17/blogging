@@ -1,9 +1,10 @@
 @extends('main')
 
-@section('title', '|Create New Post')
+@section('title', '| Create New Post')
 
 @section('stylesheets')
-	{!! HTML::style('css/parsely.css') !!}
+	{!! HTML::style('css/parsley.css') !!}
+	{!! HTML::style('css/select2.min.css') !!}
 @endsection
 
 
@@ -13,6 +14,8 @@
 		<div class="col-md-8 col-md-offset-2">
 			<h1>Create New Post</h1>
 			<hr>
+
+
 
 			{!! Form::open(['route' => 'posts.store', 'data-parsely-validate' => '']) !!}
 				<div class="form-group">
@@ -35,6 +38,16 @@
 					</select>
 				</div>
 
+				<div class="form-group">
+					{{ Form::label('tags', 'Tags:') }}
+					<select class="form-control select2-multi" name="tags[]" multiple="multiple">
+						@foreach($tags as $tag)
+							<option value='{{ $tag->id }}'>{{ $tag->name }}</option>
+						@endforeach
+					</select>
+				</div>
+
+
 	
 
 				
@@ -56,5 +69,13 @@
 @endsection
 		
 @section('scripts')
-	{!! HTML::script('js/parsely.js') !!}
+	{!! HTML::script('js/parsley.js') !!}
+	{!! HTML::script('js/select2.min.js') !!}
+
+
+
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+	</script>
+	
 @endsection

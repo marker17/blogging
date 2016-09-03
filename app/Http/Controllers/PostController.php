@@ -12,6 +12,8 @@ use Session;
 
 use App\Category;
 
+use App\Tag;
+
 
 
 class PostController extends Controller
@@ -47,9 +49,13 @@ class PostController extends Controller
      */
     public function create()
     { //neeed to grab all the categories and pass to a variable
+
         $categories=Category::all();
 
-        return view('posts.create')->withCategories($categories);
+
+        $tags = Tag::all();
+
+        return view('posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -60,6 +66,10 @@ class PostController extends Controller
      */
     public function store(Request $request){
 
+       
+
+
+
         $this->validate($request, array(
             'title' => 'required|max:255',
             'slug'=> 'required|alpha_dash|min:5|max:255|unique:posts,slug',
@@ -69,7 +79,18 @@ class PostController extends Controller
     
         
         $post=Post::create($request->all());  
+
         
+        if(isset($request->tags)){
+            $post->tags()->sync($request->tags, false);
+        }
+        else{
+            $post->tags()->sync(array());
+
+        }
+        
+       
+        $post->tags()->sync($request->tags, false);
     
         
         Session::flash('success', 'The blog post was successfully saved!');
@@ -108,7 +129,16 @@ class PostController extends Controller
             $cats[$category->id] = $category->name;
         }
 
-        return view('posts.edit')->withPost($post)->withCategories($categories);
+
+
+        $tags =Tag::all();
+        $tags2 = array();
+        foreach($tags as $tag){
+
+            $tags2[$tag->id] = $tag->name;
+        }
+
+        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
     /**
      * Update the specified resource in storage.
@@ -144,8 +174,16 @@ class PostController extends Controller
         }   
 
         $post = Post::find($id);
-        
+
         $post->update($request->all());
+
+
+        if(isset($request->tags)){
+            $post->tags()->sync($request->tags);
+        } else {
+            $post->tags()->sync(array());
+        }
+
         
       
         Session::flash('success', 'This post was successfully edited.');

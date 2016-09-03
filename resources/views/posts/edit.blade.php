@@ -2,6 +2,12 @@
 
 @section('title', '| Edit Blog Post')
 
+@section('stylesheets')
+	{!! HTML::style('css/parsley.css') !!}
+	{!! HTML::style('css/select2.min.css') !!}
+@endsection
+
+
 @section('content')
 
 
@@ -27,6 +33,11 @@
 			<div class="form-group">
 				{{ Form::label('category_id', 'Category:') }}
 				{{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('tags', 'Tags:') }}
+				{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' =>'multiple']) }}
 			</div>
 
 			<div class="form-group">
@@ -79,11 +90,24 @@
 
 
 
-
-
-
-
-
-
-
 @stop
+
+@section('scripts')
+
+	{!! HTML::script('js/parsley.js') !!}
+	{!! HTML::script('js/select2.min.js') !!}
+
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+
+
+		//set value using val, will trigger event called change, will set value to an array of individual values
+		//use helper getRelatedIds to give us array of individual numbers from tags instead of pulling individually
+		
+		$('.select2-multi').select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');
+
+
+		
+	</script>
+	
+@endsection
