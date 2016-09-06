@@ -202,6 +202,9 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
+        //to safely delete tags, we make sure that posts dont link to non existent tags
+        $post->tags()->detach();
+
         $post->delete();
 
         Session::flash('success', 'The post was successfully deleted.');
