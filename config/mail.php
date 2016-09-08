@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 587),
+    'port' => env('MAIL_PORT', 2525),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'greatbucket@gmail.com', 'name' => 'Laravel Application'],
+    'from' => ['address' => 'greatbucket@gmail.com', 'name' => 'no reply'],
 
     /*
     |--------------------------------------------------------------------------
@@ -81,7 +81,7 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME','greatbucket@gmail.com'),
+    'username' => env('MAIL_USERNAME', 'c8b6485a64b753'),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD', 'GpYsTcHH'),
+    'password' => env('MAIL_PASSWORD', '747188f887414a'),
 
     /*
     |--------------------------------------------------------------------------

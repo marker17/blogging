@@ -47,11 +47,18 @@ Route::get('blog', [
 
 //pagescontroller
 
+//Route::get('contact', 'PagesController@getContact');
 Route::get('contact', 'PagesController@getContact');
+
+Route::post('contact', 'PagesController@postContact');
+
+
+
+
 
 Route::get('about', 'PagesController@getAbout');
 
-Route::get('/', 'PagesController@getIndex');
+Route::get('/', ['uses' => 'PagesController@getIndex', 'as' => '/']);
 
 
 // postcontroller
@@ -65,3 +72,6 @@ Route::resource('tags', 'TagController', ['except' => ['create']]);
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 
+//comments
+
+Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);

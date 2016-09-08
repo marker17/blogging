@@ -23,8 +23,9 @@
 				</tbody>
 			</table>
 		</div>
-	</div>
-	<div class="col-md-4">
+
+
+		<div class="col-md-4">
 		<div class="well">
 			{!! Form::open(['method' => 'POST', 'action'=>'CategoryController@store'])  !!}
 				<h2>New Category</h2>
@@ -43,4 +44,6 @@
 
 		
 	</div>
+	</div>
+	
 @endsection

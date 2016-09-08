@@ -10,6 +10,13 @@ use App\Post;
 
 use App\Category;
 
+use App\Comment;
+
+
+
+
+
+
 
 
 class BlogController extends Controller

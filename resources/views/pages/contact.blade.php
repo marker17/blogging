@@ -8,8 +8,8 @@
 
           <h1>Contact Me</h1>
           <hr>
-          <form>
-           
+          <form action="{{ url('contact') }}" method="POST">
+            {{csrf_field()}}
           
             <div class="form-group">
               <label for="email">Email</label>
