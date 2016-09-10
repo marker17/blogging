@@ -15,6 +15,8 @@ use App\Category;
 use App\Tag;
 
 
+use Auth;
+
 
 class PostController extends Controller
 {   
@@ -35,7 +37,7 @@ class PostController extends Controller
      */
     public function index(){
 
-        $posts = Post::orderBy('id', 'desc')->paginate(10);
+        $posts = Post::latest('created_at')->paginate(10);
 
 
         return view('posts.index')->withPosts($posts);
@@ -64,6 +66,7 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    
     public function store(Request $request){
 
        
@@ -120,25 +123,31 @@ class PostController extends Controller
      */
     public function edit($id){
 
-        $post = Post::find($id);
 
-        $categories = Category::all();
-        $cats=array();
-        foreach($categories as $category){
+             
 
-            $cats[$category->id] = $category->name;
-        }
+            $post = Post::find($id);
+
+            $categories = Category::all();
+            $cats=array();
+            foreach($categories as $category){
+
+                $cats[$category->id] = $category->name;
+            }
 
 
 
-        $tags =Tag::all();
-        $tags2 = array();
-        foreach($tags as $tag){
+            $tags =Tag::all();
+            $tags2 = array();
+            foreach($tags as $tag){
 
-            $tags2[$tag->id] = $tag->name;
-        }
+                $tags2[$tag->id] = $tag->name;
+            }
 
-        return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+            return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+
+        
+        
     }
     /**
      * Update the specified resource in storage.
@@ -149,6 +158,9 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {   
+        
+
+       
 
         $post = Post::find($id);
 
@@ -172,7 +184,7 @@ class PostController extends Controller
             ));
 
         }   
-
+       
         $post = Post::find($id);
 
         $post->update($request->all());
@@ -190,6 +202,8 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $post->id);
         
+
+    
     }
 
     /**
