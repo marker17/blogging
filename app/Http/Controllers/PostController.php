@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\CreateArticleRequest;
+
 use App\Http\Requests;
 
 use App\Post;
@@ -70,8 +72,7 @@ class PostController extends Controller
     public function store(Request $request){
 
        
-
-
+       
 
         $this->validate($request, array(
             'title' => 'required|max:255',
@@ -81,6 +82,7 @@ class PostController extends Controller
         ));
     
         
+
         $post=Post::create($request->all());  
 
         
@@ -121,12 +123,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id){
+    
+    public function edit(CreateArticleRequest $request, $id){
 
 
-             
+      
+        
 
-            $post = Post::find($id);
+        $post = Post::find($id);
+
+        //if(Auth::user()->id == $post->user_id){ 
 
             $categories = Category::all();
             $cats=array();
@@ -145,6 +151,7 @@ class PostController extends Controller
             }
 
             return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
+       // }
 
         
         
@@ -212,18 +219,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(CreateArticleRequest $request, $id)
     {
         $post = Post::find($id);
 
-        //to safely delete tags, we make sure that posts dont link to non existent tags
-        $post->tags()->detach();
+       // if(Auth::user()->id == $post->user_id){ 
+            //to safely delete tags, we make sure that posts dont link to non existent tags
+            $post->tags()->detach();
 
-        $post->delete();
+            $post->delete();
 
-        Session::flash('success', 'The post was successfully deleted.');
+            Session::flash('success', 'The post was successfully deleted.');
 
 
-        return redirect()->route('posts.index');
+            return redirect()->route('posts.index');
+       // }
+        
+
     }
 }

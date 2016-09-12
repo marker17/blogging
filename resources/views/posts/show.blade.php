@@ -84,23 +84,25 @@
 				
 				<hr>
 				<div class="row">
-					<div class="col-sm-6">
-						{!! HTML::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
-					</div>
+					@if(Auth::id() == $post->user_id)
+						<div class="col-sm-6">
+							{!! HTML::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
+						</div>
 
+					
 				
+						<div class="col-sm-6">
+							{!! Form::open([
 
-					<div class="col-sm-6">
-						{!! Form::open([
+								'method' => 'DELETE',
+								'route' => ['posts.destroy', $post->id]
+							]) !!}
 
-							'method' => 'DELETE',
-							'route' => ['posts.destroy', $post->id]
-						]) !!}
+							{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
 
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
-
-						{!! Form::close() !!}
-					</div>
+							{!! Form::close() !!}
+						</div>
+					@endif
 				</div>
 				</br>
 				<div class="row">

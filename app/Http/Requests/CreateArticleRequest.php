@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
 
-
+use Auth;
 
 use App\Post;
 
@@ -17,8 +17,17 @@ class CreateArticleRequest extends Request
      */
     public function authorize()
     {
-        return Post::where('id', $this->post)
-            ->where('user_id', $this->user()->id)->exists();
+        /*
+        $post = Post::find($id);
+        if(Auth::id() == $post->user_id){ 
+
+            return true;
+        }
+        */
+        $user = app( 'auth' )->user();
+        $post = Post::findOrFail( $this->get( 'id' ) );
+
+        return $post->user_id === $user->id;
     }
 
     /**

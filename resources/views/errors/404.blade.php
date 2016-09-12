@@ -11,7 +11,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<link href="css/errstyle.css" rel="stylesheet" type="text/css" media="all" />
+
+{{ HTML::style('css/errstyle.css') }}
+
+<!--<link href="css/errstyle.css" rel="stylesheet" type="text/css" media="all" /> -->
 </head>
 <body>
     
@@ -20,8 +23,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <div class="content">
            
             <div class="logo">
-                <h1><a href="#"><img src="images/logo.png"/></a></h1>
-                <span><img src="images/signal.png"/><b>Oops! The Page you requested was not found!</b></span>
+                <h1><a href="#"><img src="/images/logo.png" alt="404"/></a></h1>
+                <span><img src="/images/signal.png" alt="no signal!"/><h1>Oops! The Page you requested was not found!</h1></span>
             </div>
           
             
