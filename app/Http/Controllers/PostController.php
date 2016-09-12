@@ -71,8 +71,8 @@ class PostController extends Controller
     
     public function store(Request $request){
 
-       
-       
+        
+   
 
         $this->validate($request, array(
             'title' => 'required|max:255',
@@ -85,6 +85,7 @@ class PostController extends Controller
 
         $post=Post::create($request->all());  
 
+        Auth::user()->posts()->save($post);
         
         if(isset($request->tags)){
             $post->tags()->sync($request->tags, false);
@@ -127,7 +128,7 @@ class PostController extends Controller
     public function edit(CreateArticleRequest $request, $id){
 
 
-      
+ 
         
 
         $post = Post::find($id);
@@ -151,7 +152,7 @@ class PostController extends Controller
             }
 
             return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
-       // }
+        //}
 
         
         
@@ -223,7 +224,7 @@ class PostController extends Controller
     {
         $post = Post::find($id);
 
-       // if(Auth::user()->id == $post->user_id){ 
+        //if(Auth::user()->id == $post->user_id){ 
             //to safely delete tags, we make sure that posts dont link to non existent tags
             $post->tags()->detach();
 
@@ -233,7 +234,7 @@ class PostController extends Controller
 
 
             return redirect()->route('posts.index');
-       // }
+        //}
         
 
     }

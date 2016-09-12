@@ -84,7 +84,7 @@
 				
 				<hr>
 				<div class="row">
-					@if(Auth::id() == $post->user_id)
+					
 						<div class="col-sm-6">
 							{!! HTML::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
 						</div>
@@ -102,7 +102,7 @@
 
 							{!! Form::close() !!}
 						</div>
-					@endif
+					
 				</div>
 				</br>
 				<div class="row">

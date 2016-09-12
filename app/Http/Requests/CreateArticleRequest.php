@@ -8,6 +8,8 @@ use Auth;
 
 use App\Post;
 
+use App\User;
+
 class CreateArticleRequest extends Request
 {
     /**
@@ -17,16 +19,9 @@ class CreateArticleRequest extends Request
      */
     public function authorize()
     {
-        /*
-        $post = Post::find($id);
-        if(Auth::id() == $post->user_id){ 
-
-            return true;
-        }
-        */
-        $user = app( 'auth' )->user();
-        $post = Post::findOrFail( $this->get( 'id' ) );
-
+        
+        $user    = app( 'auth' )->user();
+        $post = Post::findOrFail( $this->posts );  // "posts" is a route parameter
         return $post->user_id === $user->id;
     }
 

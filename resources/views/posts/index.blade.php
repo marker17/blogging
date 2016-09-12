@@ -33,9 +33,9 @@
 						<td>{{substr($post->body, 0, 50) }}{{ strlen($post->body)>50 ? "…" : "" }}</td>
 						<td>{{ date('M j, Y', strtotime($post->created_at)) }}</td>
 						<td style="text-align:center"><a href="{{ route('posts.show', $post->id)}}" class="btn btn-default btn-sm">View</a> 
-						@if(Auth::id() == $post->user_id) 
-							<a href="{{ route('posts.edit', $post->id)}}" class="btn btn-default btn-sm">Edit</a>
-						@endif
+					@if(Auth::user()->id == $post->user->id)
+						<a href="{{ route('posts.edit', $post->id)}}" class="btn btn-default btn-sm">Edit</a>
+					@endif
 					</tr>
 					@endforeach
 				</tbody>
