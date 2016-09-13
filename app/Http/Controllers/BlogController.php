@@ -26,7 +26,7 @@ class BlogController extends Controller
 
 		$categories =Category::all();
 
-		$posts = Post::paginate(10);
+		$posts = Post::latest('created_at')->paginate(10);
 
 		return view('blog.index')->withPosts($posts)->withCategories($categories);
 
