@@ -41,10 +41,11 @@
 								<td>{{ $comment->email }}</td>
 								<td>{{ $comment->comment }}</td>
 								<td>
-									<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
+									
+										<a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"></span></a>
 
-									<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
-
+										<a href="{{ route('comments.delete', $comment->id) }}" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+									
 								</td>
 
 							</tr>
@@ -84,7 +85,7 @@
 				
 				<hr>
 				<div class="row">
-					
+					@if(Auth::user()->id == $post->user->id)
 						<div class="col-sm-6">
 							{!! HTML::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!}
 						</div>
@@ -102,7 +103,7 @@
 
 							{!! Form::close() !!}
 						</div>
-					
+					@endif
 				</div>
 				</br>
 				<div class="row">
@@ -110,10 +111,8 @@
 						
 						{{ HTML::linkRoute('posts.index', '<< See All Posts', [], ['class' => 'btn btn-warning btn-block'])}}
 					</div>
-				</div>
-				
+				</div>	
 			</div>	
-		
 		</div>
 	</div>
 @endsection

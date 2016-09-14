@@ -151,6 +151,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
   
        
 
@@ -165,6 +166,7 @@ return [
         Laracasts\Flash\FlashServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
 
   
 
@@ -219,6 +221,7 @@ return [
         'HTML' => Collective\Html\HtmlFacade::class, 
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
         
        
 

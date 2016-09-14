@@ -15,7 +15,8 @@
         "ext-mysql": "*",
         "filp/whoops": "^2.1",
         "fzaninotto/faker": "^1.6",
-        "unisharp/laravel-filemanager": "^1.6"
+        "unisharp/laravel-filemanager": "^1.6",
+        "mews/purifier": "^2.0"
        
        
 

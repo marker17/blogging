@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b348b3579fc3d1e9e138a71a61ac4d79",
-    "content-hash": "6fc3192fd26c26d2edf88a95f4faaf97",
+    "hash": "e9d4869f38eb2282d173560e944ad09f",
+    "content-hash": "b84276f5711050bb03b025260c4f0138",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -373,16 +373,16 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "v2.5.4",
+            "version": "v2.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769"
+                "reference": "9f8c05cd5225a320d56d4bfdb4772f10d045a0c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
-                "reference": "abbdfd1cff43a7b99d027af3be709bc8fc7d4769",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/9f8c05cd5225a320d56d4bfdb4772f10d045a0c9",
+                "reference": "9f8c05cd5225a320d56d4bfdb4772f10d045a0c9",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
             },
             "require-dev": {
                 "phpunit/phpunit": "4.*",
-                "symfony/console": "2.*"
+                "symfony/console": "2.*||^3.0"
             },
             "suggest": {
                 "symfony/console": "For helpful console commands such as SQL execution and import of files."
@@ -440,7 +440,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2016-01-05 22:11:12"
+            "time": "2016-09-09 19:13:33"
         },
         {
             "name": "doctrine/inflector",
@@ -623,6 +623,50 @@
             "description": "DOMPDF is a CSS 2.1 compliant HTML to PDF converter",
             "homepage": "https://github.com/dompdf/dompdf",
             "time": "2016-05-11 00:36:29"
+        },
+        {
+            "name": "ezyang/htmlpurifier",
+            "version": "v4.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ezyang/htmlpurifier.git",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "reference": "d0c392f77d2f2a3dcf7fcb79e2a1e2b8804e75b2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "HTMLPurifier": "library/"
+                },
+                "files": [
+                    "library/HTMLPurifier.composer.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL"
+            ],
+            "authors": [
+                {
+                    "name": "Edward Z. Yang",
+                    "email": "admin@htmlpurifier.org",
+                    "homepage": "http://ezyang.com"
+                }
+            ],
+            "description": "Standards compliant HTML filter written in PHP",
+            "homepage": "http://htmlpurifier.org/",
+            "keywords": [
+                "html"
+            ],
+            "time": "2016-07-16 12:58:58"
         },
         {
             "name": "filp/whoops",
@@ -1436,6 +1480,71 @@
                 "laravel"
             ],
             "time": "2016-08-28 20:25:51"
+        },
+        {
+            "name": "mews/purifier",
+            "version": "2.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mewebstudio/Purifier.git",
+                "reference": "e3f8b41dafa21994b9a8349f316d8e967559ee5a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mewebstudio/Purifier/zipball/e3f8b41dafa21994b9a8349f316d8e967559ee5a",
+                "reference": "e3f8b41dafa21994b9a8349f316d8e967559ee5a",
+                "shasum": ""
+            },
+            "require": {
+                "ezyang/htmlpurifier": "4.8.*",
+                "illuminate/config": "5.1.*|5.2.*|5.3.*",
+                "illuminate/filesystem": "5.1.*|5.2.*|5.3.*",
+                "illuminate/support": "5.1.*|5.2.*|5.3.*",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "graham-campbell/testbench": "^3.2",
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^4.8|^5.0",
+                "scrutinizer/ocular": "^1.3"
+            },
+            "suggest": {
+                "laravel/framework": "To test the Laravel bindings",
+                "laravel/lumen-framework": "To test the Lumen bindings"
+            },
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "Mews\\Purifier\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Muharrem ERİN",
+                    "email": "me@mewebstudio.com",
+                    "homepage": "https://github.com/mewebstudio",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel 5 HtmlPurifier Package",
+            "homepage": "https://github.com/mewebstudio/purifier",
+            "keywords": [
+                "Purifier",
+                "htmlpurifier",
+                "laravel5 HtmlPurifier",
+                "laravel5 Purifier",
+                "laravel5 Security",
+                "security",
+                "xss"
+            ],
+            "time": "2016-07-27 10:02:13"
         },
         {
             "name": "monolog/monolog",
@@ -2924,16 +3033,16 @@
         },
         {
             "name": "unisharp/laravel-filemanager",
-            "version": "1.6.0",
+            "version": "1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/UniSharp/laravel-filemanager.git",
-                "reference": "8ffe49ae2b0b371c40563c37c0356ec484ff2ee9"
+                "reference": "ce305e54ca144a0d6fcfa5715dce56771b20ff58"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/8ffe49ae2b0b371c40563c37c0356ec484ff2ee9",
-                "reference": "8ffe49ae2b0b371c40563c37c0356ec484ff2ee9",
+                "url": "https://api.github.com/repos/UniSharp/laravel-filemanager/zipball/ce305e54ca144a0d6fcfa5715dce56771b20ff58",
+                "reference": "ce305e54ca144a0d6fcfa5715dce56771b20ff58",
                 "shasum": ""
             },
             "require": {
@@ -2976,7 +3085,7 @@
                 "tinymce",
                 "upload"
             ],
-            "time": "2016-08-03 12:18:58"
+            "time": "2016-09-12 02:53:19"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3030,16 +3139,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v6.18.1",
+            "version": "v6.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "979415e6cb437b89ad5f5242aa4050bb3859c726"
+                "reference": "1b8c50b9e33a738ecc630e2cbf65138a32932ba7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/979415e6cb437b89ad5f5242aa4050bb3859c726",
-                "reference": "979415e6cb437b89ad5f5242aa4050bb3859c726",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/1b8c50b9e33a738ecc630e2cbf65138a32932ba7",
+                "reference": "1b8c50b9e33a738ecc630e2cbf65138a32932ba7",
                 "shasum": ""
             },
             "require": {
@@ -3086,7 +3195,7 @@
                 "laravel4",
                 "laravel5"
             ],
-            "time": "2016-09-05 09:52:31"
+            "time": "2016-09-13 07:59:37"
         }
     ],
     "packages-dev": [

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests\CreateArticleRequest;
 
+use Purifier;
+
 use App\Http\Requests;
 
 use App\Post;
@@ -80,23 +82,25 @@ class PostController extends Controller
             'category_id' => 'required|integer',
             'body'=>'required'
         ));
-    
+
+
+        
+        $post = new Post; 
+        $post->title = $request->title;
+        $post->slug = $request->slug;
+        $post->category_id = $request->category_id;
+        $post->body = Purifier::clean($request->body);
+        $post->save();
         
 
-        $post=Post::create($request->all());  
 
-        Auth::user()->posts()->save($post);
+        //$post=Post::create($request->all());  
+
         
-        if(isset($request->tags)){
-            $post->tags()->sync($request->tags, false);
-        }
-        else{
-            $post->tags()->sync(array());
-
-        }
+        
         
        
-        $post->tags()->sync($request->tags, false);
+       $post->tags()->sync($request->tags, false);
     
         
         Session::flash('success', 'The blog post was successfully saved!');
@@ -195,7 +199,14 @@ class PostController extends Controller
        
         $post = Post::find($id);
 
-        $post->update($request->all());
+        //$post->update(Purifier::clean($request->all()));
+        
+
+        $post->title = $request->input('title');
+        $post->slug = $request->input('slug');
+        $post->category_id = $request->input('category_id');
+        $post->body = Purifier::clean($request->body);
+        $post->save();
 
 
         if(isset($request->tags)){
