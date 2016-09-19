@@ -1,4 +1,4 @@
-  @extends('main')
+@extends('main')
 
 @section('title','| Homepage')
 
@@ -20,7 +20,7 @@
 
           @foreach($posts as $post)
 
-            <div class="post">
+            <div class="contentmargin">
               <img src="{{ asset('images/' . $post->image) }}" height="400" width="800"/>
               <h3>{{ $post->title }}</h3>
               <p>{{ substr(strip_tags($post->body),0, 300) }} {{ strlen($post->body)>50 ? "...": ""}}</p>

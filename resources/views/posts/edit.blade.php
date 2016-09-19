@@ -57,7 +57,7 @@
 	{!! Form::model($post,[
 		'method'=>'PATCH',
 		'route' => ['posts.update', $post->id],
-		'data-parsely-validate' => ''
+		'files' => true
 
 	])!!}
 
@@ -81,6 +81,11 @@
 			<div class="form-group">
 				{{ Form::label('tags', 'Tags:') }}
 				{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' =>'multiple']) }}
+			</div>
+
+			<div class="form-group">
+				{{ Form::label('featured_image', 'Update Featured Image:') }}
+				{{ Form::file('featured_image') }}
 			</div>
 
 			<div class="form-group">
@@ -152,5 +157,10 @@
 
 		
 	</script>
+
+
+
+	
+      
 	
 @endsection
