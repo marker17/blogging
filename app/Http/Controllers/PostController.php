@@ -21,6 +21,8 @@ use App\Tag;
 
 use Auth;
 
+use Image;
+
 
 class PostController extends Controller
 {   
@@ -73,39 +75,39 @@ class PostController extends Controller
     
     public function store(Request $request){
 
-        
-   
-
+        // validate the data
         $this->validate($request, array(
             'title' => 'required|max:255',
-            'slug'=> 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-            'category_id' => 'required|integer',
-            'body'=>'required'
+            'slug' => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+            'category_id'=> 'required|integer',
+            'body'  => 'required'
         ));
 
+        // store in the database
+        $post = new Post;
 
-        
-        $post = new Post; 
         $post->title = $request->title;
         $post->slug = $request->slug;
         $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body);
+
+        if ($request->hasFile('featured_image')) {
+          $image = $request->file('featured_image');
+          $filename = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images/' . $filename);
+          Image::make($image)->resize(800, 400)->save($location);
+
+          $post->image = $filename;
+        }
+
         $post->save();
-        
 
+        $post->tags()->sync($request->tags, false);
 
-        //$post=Post::create($request->all());  
-
-        
-        
-        
-       
-       $post->tags()->sync($request->tags, false);
-    
-        
-        Session::flash('success', 'The blog post was successfully saved!');
+        Session::flash('success', 'The blog post was successfully save!');
 
         return redirect()->route('posts.show', $post->id);
+   
     }
 
     /**

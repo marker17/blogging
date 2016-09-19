@@ -220,8 +220,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'HTML' => Collective\Html\HtmlFacade::class, 
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
-        'Image' => Intervention\Image\Facades\Image::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'Image' => Intervention\Image\Facades\Image::class,
         
        
 

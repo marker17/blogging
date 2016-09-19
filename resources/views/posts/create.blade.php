@@ -57,7 +57,7 @@
 
 
 
-			{!! Form::open(['route' => 'posts.store', 'data-parsely-validate' => '']) !!}
+			{!! Form::open(['route' => 'posts.store', 'data-parsely-validate' => '', 'files' =>true ]) !!}
 				<div class="form-group">
 					{!! Form::label('title', 'Title:')  !!}
 					{!! Form::text('title', null, ['class' => 'form-control', 'required' => '', 'maxlength' => '255'])  !!}
@@ -88,7 +88,10 @@
 				</div>
 
 
-	
+				<div class="form-group">
+					{!! Form::label('featured_image', 'Upload Featured Image')  !!}
+					{!! Form::file('featured_image') !!}
+				</div>
 
 				
 		
